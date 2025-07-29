@@ -1,0 +1,1 @@
+CREATE DATABASE IDENTIFIED BY 'localhost';
