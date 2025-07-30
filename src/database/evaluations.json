@@ -1,0 +1,29 @@
+[
+  {
+    "reservation_id": 1,
+    "evaluateur_id": 2,
+    "evalue_id": 1,
+    "note": 5,
+    "commentaire": "Excellente conductrice ! Ponctuelle, conduite souple et très sympa. Je recommande vivement Alice.",
+    "type": "conducteur",
+    "created_at": {"$date": "2025-07-29T15:30:00.000Z"}
+  },
+  {
+    "reservation_id": 1,
+    "evaluateur_id": 1,
+    "evalue_id": 2,
+    "note": 4,
+    "commentaire": "Passager agréable et ponctuel. Bonne conversation pendant le trajet.",
+    "type": "passager",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  },
+  {
+    "reservation_id": 5,
+    "evaluateur_id": 1,
+    "evalue_id": 3,
+    "note": 4,
+    "commentaire": "Charlie conduit bien, trajet agréable sur la côte. Juste un peu de retard au départ.",
+    "type": "conducteur",
+    "created_at": {"$date": "2025-07-29T17:00:00.000Z"}
+  }
+]

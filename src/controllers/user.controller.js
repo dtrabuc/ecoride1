@@ -1,72 +1,76 @@
-const { findByEmail, createUser } = require('../models/user.model');
-const pool = require('../config/mysql');
+const { findByEmail, findById, getAllUsers, updateUser, deleteUser } = require('../models/user.model');
 
 // Récupérer le profil de l'utilisateur connecté
 exports.getProfile = (req, res) => {
   const userId = req.user.id;
-  pool.query('SELECT id, email FROM users WHERE id = ?', [userId], (err, results) => {
+  findById(userId, (err, user) => {
     if (err) return res.status(500).json({ error: 'Erreur serveur' });
-    if (!results[0]) return res.status(404).json({ error: 'Utilisateur non trouvé' });
-    res.json(results[0]);
+    if (!user) return res.status(404).json({ error: 'Utilisateur non trouvé' });
+    
+    // Retourner les données sans le mot de passe
+    const { password, ...userData } = user;
+    res.json(userData);
   });
 };
 
-// Récupérer tous les utilisateurs (sans mot de passe)
+// Récupérer tous les utilisateurs (admin)
 exports.getAllUsers = (req, res) => {
-  pool.query('SELECT id, email FROM users', (err, results) => {
+  getAllUsers((err, users) => {
     if (err) return res.status(500).json({ error: 'Erreur serveur' });
-    res.json(results);
+    res.json(users);
   });
 };
 
-// Mettre à jour un utilisateur
-exports.updateUser = (req, res) => {
+// Récupérer un utilisateur par ID
+exports.getUserById = (req, res) => {
   const userId = req.params.id;
-  const { email, password } = req.body;
-  if (!email && !password) return res.status(400).json({ error: 'Aucune donnée à mettre à jour' });
+  findById(userId, (err, user) => {
+    if (err) return res.status(500).json({ error: 'Erreur serveur' });
+    if (!user) return res.status(404).json({ error: 'Utilisateur non trouvé' });
+    
+    // Retourner les données sans le mot de passe
+    const { password, ...userData } = user;
+    res.json(userData);
+  });
+};
+
+// Mettre à jour le profil de l'utilisateur connecté
+exports.updateProfile = (req, res) => {
+  const userId = req.user.id;
+  const { email, nom, prenom, telephone } = req.body;
+  
+  if (!email && !nom && !prenom && !telephone) {
+    return res.status(400).json({ error: 'Aucune donnée à mettre à jour' });
+  }
 
   // Vérifier si l'email existe déjà (si email modifié)
   if (email) {
-    findByEmail(email, (err, user) => {
+    findByEmail(email, (err, existingUser) => {
       if (err) return res.status(500).json({ error: 'Erreur serveur' });
-      if (user && user.id != userId) return res.status(409).json({ error: 'Email déjà utilisé' });
-
-      // Mise à jour
-      update();
+      if (existingUser && existingUser.id !== userId) {
+        return res.status(400).json({ error: 'Cet email est déjà utilisé' });
+      }
+      
+      // Mettre à jour l'utilisateur
+      updateUser(userId, { email, nom, prenom, telephone }, (err) => {
+        if (err) return res.status(400).json({ error: 'Erreur lors de la mise à jour' });
+        res.json({ message: 'Profil mis à jour avec succès' });
+      });
     });
   } else {
-    update();
-  }
-
-  function update() {
-    const fields = [];
-    const values = [];
-    if (email) {
-      fields.push('email = ?');
-      values.push(email);
-    }
-    if (password) {
-      fields.push('password = ?');
-      values.push(password);
-    }
-    values.push(userId);
-
-    pool.query(
-      `UPDATE users SET ${fields.join(', ')} WHERE id = ?`,
-      values,
-      (err, result) => {
-        if (err) return res.status(500).json({ error: 'Erreur serveur' });
-        res.json({ message: 'Utilisateur mis à jour' });
-      }
-    );
+    // Mettre à jour sans changer l'email
+    updateUser(userId, { nom, prenom, telephone }, (err) => {
+      if (err) return res.status(400).json({ error: 'Erreur lors de la mise à jour' });
+      res.json({ message: 'Profil mis à jour avec succès' });
+    });
   }
 };
 
-// Supprimer un utilisateur
-exports.deleteUser = (req, res) => {
-  const userId = req.params.id;
-  pool.query('DELETE FROM users WHERE id = ?', [userId], (err, result) => {
-    if (err) return res.status(500).json({ error: 'Erreur serveur' });
-    res.json({ message: 'Utilisateur supprimé' });
+// Supprimer son propre compte
+exports.deleteProfile = (req, res) => {
+  const userId = req.user.id;
+  deleteUser(userId, (err) => {
+    if (err) return res.status(400).json({ error: 'Erreur lors de la suppression' });
+    res.json({ message: 'Compte supprimé avec succès' });
   });
 };

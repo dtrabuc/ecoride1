@@ -1,0 +1,31 @@
+[
+  {
+    "expediteur_id": 4,
+    "destinataire_id": 2,
+    "contenu": "Salut Bob ! Concernant ma demande de réservation, on peut se retrouver un peu avant 14h ?",
+    "lu": false,
+    "created_at": {"$date": "2025-07-29T12:30:00.000Z"}
+  },
+  {
+    "expediteur_id": 2,
+    "destinataire_id": 4,
+    "contenu": "Salut Diana ! Pas de problème pour 13h45. RDV au parking de la gare Part-Dieu ?",
+    "lu": false,
+    "created_at": {"$date": "2025-07-29T13:00:00.000Z"}
+  },
+  {
+    "expediteur_id": 5,
+    "destinataire_id": 1,
+    "contenu": "Bonjour Alice, pour le trajet Paris-Bordeaux, est-ce que tu peux me confirmer l'heure exacte ?",
+    "lu": true,
+    "date_lecture": {"$date": "2025-07-29T14:30:00.000Z"},
+    "created_at": {"$date": "2025-07-29T14:00:00.000Z"}
+  },
+  {
+    "expediteur_id": 4,
+    "destinataire_id": 5,
+    "contenu": "Hello Emma ! Je peux amener des snacks pour la route si tu veux ?",
+    "lu": false,
+    "created_at": {"$date": "2025-07-29T15:00:00.000Z"}
+  }
+]

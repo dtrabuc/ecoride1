@@ -1,11 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const { getProfile, getAllUsers, updateUser, deleteUser } = require('../controllers/user.controller');
+const { 
+  getProfile, 
+  getAllUsers, 
+  getUserById,
+  updateProfile, 
+  deleteProfile 
+} = require('../controllers/user.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
 
-router.get('/me', authMiddleware, getProfile);
-router.get('/', getAllUsers);
-router.put('/:id', authMiddleware, updateUser);
-router.delete('/:id', authMiddleware, deleteUser);
+// Routes publiques
+router.get('/', getAllUsers);  // Liste tous les utilisateurs
+router.get('/:id', getUserById);  // Récupérer un utilisateur par ID
+
+// Routes protégées (authentification requise)
+router.get('/me/profile', authMiddleware, getProfile);  // Mon profil
+router.put('/me/profile', authMiddleware, updateProfile);  // Modifier mon profil
+router.delete('/me/profile', authMiddleware, deleteProfile);  // Supprimer mon compte
 
 module.exports = router;

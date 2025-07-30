@@ -1,0 +1,110 @@
+[
+  {
+    "depart": "Paris",
+    "destination": "Lyon",
+    "date_depart": {"$date": "2025-07-30T08:00:00.000Z"},
+    "places_disponibles": 2,
+    "prix_par_place": 25.00,
+    "conducteur_id": 1,
+    "description": "Trajet direct sur autoroute, climatisation, musique au choix. Départ flexible +/- 30min.",
+    "vehicule": {
+      "marque": "Peugeot",
+      "modele": "308",
+      "couleur": "Blanche"
+    },
+    "conditions": "Non-fumeur, animaux acceptés",
+    "statut": "actif",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"},
+    "updated_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  },
+  {
+    "depart": "Lyon",
+    "destination": "Marseille",
+    "date_depart": {"$date": "2025-07-30T14:00:00.000Z"},
+    "places_disponibles": 1,
+    "prix_par_place": 30.00,
+    "conducteur_id": 2,
+    "description": "Route panoramique, arrêt pause café inclus. Vue sur les montagnes.",
+    "vehicule": {
+      "marque": "Renault",
+      "modele": "Clio",
+      "couleur": "Rouge"
+    },
+    "conditions": "Non-fumeur, pas d'animaux",
+    "statut": "actif",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"},
+    "updated_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  },
+  {
+    "depart": "Paris",
+    "destination": "Bordeaux",
+    "date_depart": {"$date": "2025-07-31T09:00:00.000Z"},
+    "places_disponibles": 4,
+    "prix_par_place": 35.00,
+    "conducteur_id": 1,
+    "description": "Voyage tranquille, plusieurs arrêts prévus. Partage des frais péage.",
+    "vehicule": {
+      "marque": "Peugeot",
+      "modele": "308",
+      "couleur": "Blanche"
+    },
+    "conditions": "Fumeur accepté, animaux OK",
+    "statut": "actif",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"},
+    "updated_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  },
+  {
+    "depart": "Marseille",
+    "destination": "Nice",
+    "date_depart": {"$date": "2025-08-01T16:00:00.000Z"},
+    "places_disponibles": 1,
+    "prix_par_place": 15.00,
+    "conducteur_id": 3,
+    "description": "Trajet côtier magnifique, route des calanques. Coucher de soleil garanti !",
+    "vehicule": {
+      "marque": "Citroën",
+      "modele": "C3",
+      "couleur": "Bleue"
+    },
+    "conditions": "Non-fumeur",
+    "statut": "actif",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"},
+    "updated_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  },
+  {
+    "depart": "Lyon",
+    "destination": "Paris",
+    "date_depart": {"$date": "2025-08-02T18:30:00.000Z"},
+    "places_disponibles": 3,
+    "prix_par_place": 28.00,
+    "conducteur_id": 4,
+    "description": "Retour de week-end, ambiance détendue. Possibilité d'écouter des podcasts.",
+    "vehicule": {
+      "marque": "Volkswagen",
+      "modele": "Golf",
+      "couleur": "Grise"
+    },
+    "conditions": "Non-fumeur, animaux OK",
+    "statut": "actif",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"},
+    "updated_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  },
+  {
+    "depart": "Toulouse",
+    "destination": "Montpellier",
+    "date_depart": {"$date": "2025-08-03T10:15:00.000Z"},
+    "places_disponibles": 3,
+    "prix_par_place": 18.00,
+    "conducteur_id": 5,
+    "description": "Trajet matinal, parfait pour un week-end à Montpellier. Conductrice expérimentée.",
+    "vehicule": {
+      "marque": "Renault",
+      "modele": "Megane",
+      "couleur": "Noire"
+    },
+    "conditions": "Non-fumeur, pas d'animaux",
+    "statut": "actif",
+    "created_at": {"$date": "2025-07-29T16:00:00.000Z"},
+    "updated_at": {"$date": "2025-07-29T16:00:00.000Z"}
+  }
+]
